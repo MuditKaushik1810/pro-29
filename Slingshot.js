@@ -1,26 +1,28 @@
-class SlingShot{
+class Slingshot{
     constructor(bodyA, pointB){
         var options = {
             bodyA: bodyA,
             pointB: pointB,
             stiffness: 0.04,
-            length: 10
+            length: 1
         }
-        
-        this.pointB = pointB
         this.sling = Constraint.create(options);
-        this.image = "polygon.png"
+        this.pointB=pointB;
         World.add(world, this.sling);
-    }
 
+    }
     fly(){
-        this.sling.bodyA = null;
+        this.sling.bodyA =null;
     }
-
     display(){
-      imageMode(CENTER);  
-      image(this.image,this.sling.position.x,this.sling.position.y,40,40);
+        if(this.sling.bodyA){
+        var pointA = this.sling.bodyA.position;
+        var pointB = this.pointB;
+        
+        strokeWeight(4);
+        stroke("turquoise");
+        line(pointA.x, pointA.y, pointB.x, pointB.y);
+        }
+        }
+    
 }
-}
-
-
